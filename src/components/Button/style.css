@@ -1,0 +1,40 @@
+.btnPages, .btnPagesLeave {
+    align-items: center;
+    background-color: #03588C;
+    border-radius: 25px;
+    border: none;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 2.5);
+    color: #fff;
+    display: flex;
+    font-size: 2.5vmin;
+    font-weight: 600;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    justify-content: center;
+    text-decoration: none;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.btnPages {
+    width: 100%;
+}
+
+.btnPagesLeave {
+    width: 100px;
+}
+
+.btnLeaveArea {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.imgSvg {
+    fill: #fff;
+    min-width: 25px;
+    width: 2vw;
+}
+
+.btnPages:hover {
+    background-color: #F28322;
+}

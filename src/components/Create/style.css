@@ -1,0 +1,93 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.create {
+    background-color: #fff;
+    width: 100%;
+    height: auto;
+    font-family: 'Inter', sans-serif;
+}
+
+.create__box {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 100vh;
+    padding: 5% 0;
+}
+
+.create__content {
+    text-align: center;
+    max-width: 600px;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 2rem;
+}
+
+.create__content__img__logo {
+    max-width: 250px;
+}
+
+.create__content__text {
+    color: #F2B885;
+    font-size: 2.5vmin;
+    margin-bottom: 3rem;
+}
+
+.create__content__text2 {
+    color: #03588C;
+    font-size: 1rem;
+    margin: 2rem 0;
+}
+
+form {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+form div {
+    width: 100%;
+}
+
+label {
+    color: #F28322;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+.formData {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+button {
+    color: #FFF;
+    text-transform: capitalize;
+    background-color: #F28322;
+    width: 70%;
+    padding: 0.5rem 0;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    border: none;
+    box-shadow: 3px 3px 4px rgba(0,0,0,0.4);
+    cursor: pointer;
+}
+
+input, select {
+    flex-grow: 1;
+    height: auto;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #F28322;    
+}
