@@ -97,6 +97,12 @@
     box-shadow: 0 4px 4px rgba(0, 0, 0, 2.5);
 }
 
+.formLogin {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
 .inputBox {
     position: relative;
     width: 100%;

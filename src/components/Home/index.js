@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.css';
 import Button from '../Button';
+import {Link} from 'react-router-dom'
 
 function Home () {
     return (
@@ -13,7 +14,9 @@ function Home () {
                         </div>
                         <p className='hero__content__text'>sistema eletrônico de ponto de funcionários</p>
                         <div className='hero__content__bnt '>
-                            <Button svgIcon={'assets/images/login_icon.svg'} pageName='Acessar'/>  
+                            <Link to='/login'>
+                                <Button svgIcon={'assets/images/login_icon.svg'} pageName='Acessar'/>
+                            </Link>
                         </div>                   
                     </div>
                 </div>

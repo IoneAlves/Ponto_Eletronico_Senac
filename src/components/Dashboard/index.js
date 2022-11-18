@@ -1,9 +1,9 @@
 import React from 'react';
 import './style.css'
 import Button from '../Button';
+import {Link} from 'react-router-dom';
 
 function Dashboard () {
-    let nameUser = 'Ione';
     return (
         <div className='dashboard'>
             <div className='dashboard__box'>
@@ -13,14 +13,24 @@ function Dashboard () {
                         <p className="login__content__text">sistema eletrônico de ponto de funcionários</p>                            
                     </div>
                     <div>
-                        <p>Olá, {nameUser}! Clique no opção desejada para manipular o seu cartão de ponto.</p>
+                        <p>Olá, "nome do usuário"! Clique no opção desejada para manipular o seu cartão de ponto.</p>
                     </div>
                     <div className='dashboard__content__bnt '>
-                        <Button svgIconDashboard={'assets/images/clocks_icon.svg'} pageName='cadastrar'/>  
-                        <Button svgIconDashboard={'assets/images/arrow_icon.svg'} pageName='alterar'/>  
-                        <Button svgIconDashboard={'assets/images/find_icon.svg'} pageName='consultar'/> 
-                        <Button svgIconDashboard={'assets/images/trash_icon.svg'} pageName='deletar'/>
-                        <Button svgIconDashboard={'assets/images/user_dashboard_icon.svg'} pageName='meu cadastro'/>        
+                        <Link to='/cadastrar'>
+                            <Button svgIconDashboard={'assets/images/clocks_icon.svg'} pageName='cadastrar'/> 
+                        </Link>
+                        <Link to='/atualizar'>
+                            <Button svgIconDashboard={'assets/images/arrow_icon.svg'} pageName='alterar'/>  
+                        </Link>
+                        <Link to='/pesquisar'>
+                            <Button svgIconDashboard={'assets/images/find_icon.svg'} pageName='consultar'/> 
+                        </Link>
+                        <Link to='/deletar'>
+                            <Button svgIconDashboard={'assets/images/trash_icon.svg'} pageName='deletar'/>
+                        </Link>
+                        <Link to='/meucadastro'>
+                            <Button svgIconDashboard={'assets/images/user_dashboard_icon.svg'} pageName='meu cadastro'/>
+                        </Link>                        
                     </div>
                 </div>
             </div>

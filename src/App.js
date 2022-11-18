@@ -1,11 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import Create from './components/Create';
+import Routes from './Routes';
 
 function App() {
   return (
     <div className="App">
-      <Create />
+      <Routes />
     </div>
   );
 }

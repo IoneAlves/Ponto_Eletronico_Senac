@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.css';
+import {Link} from 'react-router-dom';
 
 function Login () {
     return (
@@ -15,20 +16,23 @@ function Login () {
                             <p>LOGIN</p>
                             <div className="underBar"></div>
                         </div>
-                        <div className='inputBox'>
-                            <img className='login__content__img' src={'assets/images/user_icon.svg'}></img>
-                            <input className='inputEmailPassword' type="text" name="" id=""></input>
-                        </div>
-                        <div>
-                            <img className='login__content__img' src={'assets/images/password_icon.svg'}></img>
-                            <input className='inputEmailPassword' type="password" name="" id=""></input>
-                        </div>
-                        <div>
-                            <input class="login__content__bnt" type="button" value="Acessar"></input>
-                        </div>
-                        <div>
-                            <p>Esqueceu sua senha ou nome de usuário? <span>Clique aqui.</span></p>
-                        </div>
+                        <form className='formLogin' action='/checkin'>
+                            <div className='inputBox'>
+                                <img className='login__content__img' src={'assets/images/user_icon.svg'}></img>
+                                <input className='inputEmailPassword' type="text" name="emailLogin" id="email"></input>
+                            </div>
+                            <div>
+                                <img className='login__content__img' src={'assets/images/password_icon.svg'}></img>
+                                <input className='inputEmailPassword' type="password" name="passwordLogin" id=""></input>
+                            </div>
+                            <div>
+                                <button class="login__content__bnt">Acessar</button>
+                            </div>
+                            <div>
+                                <p>Esqueceu sua senha ou nome de usuário? <span>Clique aqui.</span></p>
+                                <Link to='/dashboard'><div>Ir Área do DashBoard</div></Link> 
+                            </div>
+                        </form>
                     </div>
                 </div>
             </setion>

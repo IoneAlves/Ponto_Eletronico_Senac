@@ -1,0 +1,155 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.update {
+    background-color: #fff;
+    width: 100%;
+    font-family: 'Inter', sans-serif;
+}
+
+.update__box {
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    margin: 0 auto;
+    width: 70%;
+    padding: 5% 0;
+}
+
+.update__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    height: auto;
+    justify-content: space-around;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.update__content__img__logo {
+    width: 250px;
+}
+
+.update__content__text {
+    color: #F2B885;
+    font-size: 3vmin;
+    margin-bottom: 3rem;
+}
+
+.btnPages, .btnPagesLeave {
+    align-items: center;
+    background-color: #03588C;
+    border-radius: 25px;
+    border: none;
+    box-shadow: 0 4px 4px rgba(0,0,0,0.5);
+    color: #fff;
+    display: flex;
+    font-size: 2.5vmin;
+    font-weight: bold;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    justify-content: center;
+    text-decoration: none;
+    width: 100%;
+}
+
+.btnChangeUpdate{
+    display: flex;
+    gap: 2rem;
+}
+
+.btnPages {
+    margin: 2rem 0;
+}
+
+.btnPagesLeave {
+    width: 100px;
+}
+
+.btnLeaveArea {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.imgSvg {
+    fill: #fff;
+    min-width: 25px;
+    width: 2vw;
+}
+
+.formUpdate {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.formUpdate div {
+    width: 100%;
+}
+
+label {
+    color: #F28322;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+.formData {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 1rem 0;
+}
+
+input, select {
+    flex-grow: 1;
+    height: auto;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #F28322;    
+}
+
+
+button {
+    color: #FFF;
+    text-transform: capitalize;
+    background-color: #F28322;
+    width: 45%;
+    padding: 0.5rem 0;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    border: none;
+    box-shadow: 3px 3px 4px rgba(0,0,0,0.4);
+    cursor: pointer;
+}
+
+.btnPages:hover {
+    background-color: #F28322;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .flexInputs {
+       flex-direction: column;
+    }
+
+    .update__box {
+        width: 100%;
+    }
+
+    .update__content {
+        width: 90%;
+        margin: 0 auto;
+        display: block;
+    }
+
+    p {
+        font-size: 2vmin;
+    }
+
+  }

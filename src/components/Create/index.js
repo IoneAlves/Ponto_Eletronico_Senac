@@ -2,6 +2,7 @@ import React from 'react';
 import './style.css';
 import Button from '../Button';
 import {useState, useRef} from 'react';
+import {Link} from 'react-router-dom'
 
 function Create (props) {    
     
@@ -44,7 +45,7 @@ function Create (props) {
             <div className='create__box'>
                 <div className='create__content'>
                     <div className=''>
-                        <img className='create__content__img__logo' src={'assets/images/Senac_logo.png'} ></img>
+                        <img className='dashboard__content__img__logo' src={'assets/images/Senac_logo.png'} ></img>
                         <p className="login__content__text">sistema eletrônico de ponto de funcionários</p>                            
                     </div>
                     <div>
@@ -77,7 +78,7 @@ function Create (props) {
                             </div>
                             <button type="submit">incluir ponto</button>
                         </form>
-                        <div class="backHome">voltar</div>
+                        <Link to='/dashboard'><div class="backHome">voltar</div></Link>                        
                 </div>
             </div>
         </div>
