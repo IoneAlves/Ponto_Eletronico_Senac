@@ -1,7 +1,8 @@
-const mysql = require('mysql2');
 const express = require('express');
-const bdTableLogin = require('../database/tables')
 const app = express();
+const mysql = require('mysql2');
+const cors = require('cors');
+const bdTables = require('../database/tables')
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -11,19 +12,46 @@ const connection = mysql.createConnection({
     database: 'pontosenac'
 })
 
-app.post('/checkin', (req, res)=>{
-    bdTableLogin.tableLogin.findAll()
-        .then((cadastroUsuario)=>{
-            if (cadastroUsuario.emailLogin === req.emailLogin && cadastroUsuario.passwordLogin === req.passwordLogin) {
-                res.render('/dashboard');
-            } else (
-                res.render('/');
-            )
-        })
+app.use(cors());
+app.use(express.json());
+
+app.post('/cadastro', (req, resp)=>{   
+    bdTables.tableCadastroPonto.create({
+        turno: req.body.turno,
+        date: req.body.date,
+        time: req.body.time
+    }).then(()=>{
+        resp.send('Ponto Cadastrado Com Sucesso');
+    }).catch((erro)=>{
+        resp.send('Erro ao gravar' + erro);
+    })
 })
 
-app.listen(3000, ()=>{
-    console.log('Server listening to port 3000');
+app.get('/getData', (req, resp)=>{
+    bdTables.tableCadastroPonto.findAll()
+    .then((cadastrosPontos)=>{ 
+        resp.send({cadastrosPontos: cadastrosPontos});
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+})
+
+app.get('/',(req, res)=>{
+    res.json({'mensagem': 'Tudo está conectado'});
+})
+
+app.get('/dados',(req, res)=>{
+    res.json({'mensagem': 'Tudo está conectado',
+              'ano':'1988',
+              'hora': '10:44',
+              'dia': 'quarta-feira'
+            });
+})
+
+
+app.listen(3001, ()=>{
+    console.log('Server listening to port 3001');
 })
 
 connection.connect((err)=>{

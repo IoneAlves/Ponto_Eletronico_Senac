@@ -2,9 +2,13 @@ import React from 'react';
 import './style.css';
 import Button from '../Button';
 import {useState, useRef} from 'react';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 function Create (props) {    
+    
+    const inputTurno = useRef(null);
+    const [turno, turnoEscolhido] = useState()
     
     const inputDate = useRef(null);
     const [dayNow, dateUpdate] = useState('teste');
@@ -13,6 +17,12 @@ function Create (props) {
     const [hourNow, hourUpdated] = useState('teste');
     
     let nameUser = 'Ione'
+    
+    //pegar o valor do tipo do turno 
+
+    function escolhaTurno(event){
+        turnoEscolhido(event.target.value);
+    }
   
     // criação da data automática no input de data
     
@@ -40,6 +50,18 @@ function Create (props) {
 
     setInterval(timeNow, 1000);
 
+    // salvar dados no banco de dados
+
+    const salvarPonto = () => {
+        axios.post('http://localhost:3001/cadastro', {
+            turno: turno,
+            date: dayNow,
+            time: hourNow  
+        }).then((response)=>{
+            console.log(response);
+        });
+    };
+
     return (
         <div className='create'>
             <div className='create__box'>
@@ -55,30 +77,29 @@ function Create (props) {
                         <p>{nameUser}, selecione o tipo do regitro e clique em “incluir ponto” para registrar o ponto</p>
                     </div>
                     <form action="">
-                            <div class="formData">
+                            <div className="formData">
                                 <label for="">TIPO DE REGISTRO</label>
-                                <select name="" id="">
-                                    <optgroup label="selecione o turno">
-                                        <option value="">ENTRADA TURNO</option>
-                                        <option value="">SAÍDA ALMOÇO</option>
-                                        <option value="">RETORNO ALMOÇO</option>
-                                        <option value="">SAÍDA TURNO</option>
-                                    </optgroup>
+                                <select name="turno" id="" onChange={escolhaTurno}>
+                                    <option value="" disabled>Escolha uma opção</option>
+                                    <option value="entrada_turno">ENTRADA TURNO</option>
+                                    <option value="saida_almoco">SAÍDA ALMOÇO</option>
+                                    <option value="retorno_almoco">RETORNO ALMOÇO</option>
+                                    <option value="saida_turno">SAÍDA TURNO</option>
                                 </select>
                             </div>
-                            <div class="formData">
-                                <div class="formData">
+                            <div className="formData">
+                                <div className="formData">
                                     <label for="">DATA</label>
                                     <input ref={inputDate} type="text" name="date" id="date" value={dayNow} disabled></input>
                                 </div>
-                                <div class="formData">
+                                <div className="formData">
                                     <label for="">HORA</label>
-                                    <input ref={inputTime} type="text" name="currentTime" id="currentTime" value={hourNow} disabled></input>
+                                    <input ref={inputTime} type="text" name="time" id="currentTime" value={hourNow} disabled></input>
                                 </div>
                             </div>
-                            <button type="submit">incluir ponto</button>
+                            <button type="submit" onClick={salvarPonto}>incluir ponto</button>
                         </form>
-                        <Link to='/dashboard'><div class="backHome">voltar</div></Link>                        
+                        <Link to='/dashboard'><div className="backHome">voltar</div></Link>                        
                 </div>
             </div>
         </div>

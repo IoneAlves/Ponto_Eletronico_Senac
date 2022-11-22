@@ -18,6 +18,29 @@ const tableLogin = databaseConnection.sequelize.define('login', {
     }
 );
 
+const tableCadastroPonto = databaseConnection.sequelize.define('ponto', {
+  id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+  },
+  turno: {
+      type: Sequelize.STRING,
+  },
+  date: {
+      type: Sequelize.STRING
+  },
+  time: {
+      type: Sequelize.STRING
+  }
+},{
+  timestamps: false
+  }
+);
+
+// tableCadastroPonto.sync({force: true});
+
   module.exports = {
-    tableLogin
+    tableLogin,
+    tableCadastroPonto
   }
