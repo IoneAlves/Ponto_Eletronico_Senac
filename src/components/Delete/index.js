@@ -1,8 +1,55 @@
 import React from 'react';
 import './style.css';
 import {Link} from 'react-router-dom';
+import {useState, useRef} from 'react';
+import Axios from 'axios';
 
 function Delete () {
+    const inputDate = useRef(null);
+    const [pontoDeleteDisplay, pontoDelete] = useState([]);
+    const [horario, horarioEscolhido] = useState();
+    const [dataSelect, dataEscolhida] = useState();
+
+    function invertDate (x){
+        return x.split('-').reverse().join('-');
+    }
+
+    function escolhaData(event){
+        let dateInvert = event.target.value;
+        dataEscolhida(invertDate(dateInvert));
+    }
+
+   function escolhaHorario(event){
+        horarioEscolhido(event.target.value);
+    }
+
+    console.log(horario, dataSelect);
+   
+    const  pesquisarPontoDelete = async () => {   
+        var dataDisplay = []; 
+        await Axios.get("http://localhost:3001/getData")
+          .then((response)=>{
+            var dataDb = response.data;
+            dataDb.cadastrosPontos.forEach((cadastroPonto)=>{
+                if(cadastroPonto.date === dataSelect && cadastroPonto.turno === horario) {
+                    dataDisplay = 
+                        <tr>
+                            <td>{cadastroPonto.id}</td>
+                            <td>{cadastroPonto.turno}</td>
+                            <td>{cadastroPonto.date}</td>
+                            <td>{cadastroPonto.time}</td>
+                        </tr>
+                }else(
+                    dataDisplay = 
+                        <tr>
+                            <td>Registro não localizado</td>
+                        </tr>
+                )            
+            })
+        })              
+        pontoDelete(dataDisplay)
+    };
+
     return(
         <div>
             <div className="delete__box">
@@ -22,19 +69,18 @@ function Delete () {
                         </div>
                         <form className='formDelete' action="">
                             <div className="formData">
-                                <div className="formDataInput">
-                                    <label for="">DATA</label><br></br>
-                                    <input  type="date" name="" id=""></input>
+                                <div className="formData">
+                                    <label for="">DATA</label>
+                                    <input type="date" name="dataSelect" id="date" onChange={escolhaData} ></input>
                                 </div>
                                 <div className="formDataInput">
                                     <label for="">TIPO DE REGISTRO</label>
-                                    <select name="" id="">
-                                        <optgroup label="selecione o turno">
-                                            <option value="">ENTRADA TURNO</option>
-                                            <option value="">SAÍDA ALMOÇO</option>
-                                            <option value="">RETORNO ALMOÇO</option>
-                                            <option value="">SAÍDA TURNO</option>
-                                        </optgroup>
+                                    <select name="horario" id="" onChange={escolhaHorario}>
+                                        <option value="" disabled>Escolha uma opção</option>
+                                        <option value="entrada_turno">ENTRADA TURNO</option>
+                                        <option value="saida_almoco">SAÍDA ALMOÇO</option>
+                                        <option value="retorno_almoco">RETORNO ALMOÇO</option>
+                                        <option value="saida_turno">SAÍDA TURNO</option>
                                     </select>
                                 </div>
                             </div>
@@ -47,10 +93,15 @@ function Delete () {
                                 </table>
                             </div>
                             <div className="btnChangeDelete">
-                                <button type="button">PESQUISAR</button>
+                                <button onClick={pesquisarPontoDelete} type="button">PESQUISAR</button>
                                 <button type="submit">DELETAR</button>
                             </div>                            
                         </form>
+                        <div className='tableArea'>
+                            <table>
+                                { pontoDeleteDisplay }
+                            </table>
+                        </div>
                         <Link to='/dashboard'><div class="backHome">voltar</div></Link> 
                         <div>
                             <p className="delete__content__text2 "><span>Atenção: </span>será permitido alterar apenas o tipo do último registro incluído no sistema. Caso deseje alterar data e hora, entre em contato com o RH responsável</p>

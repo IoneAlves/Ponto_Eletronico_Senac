@@ -5,21 +5,35 @@ import './style.css';
 import {Link} from 'react-router-dom';
 
 function Read () {
-    
-    const [pontos, bdPontos] = useState();
-    const initialDate = useRef(null);
-    const finalDate = useRef(null);
+    const [pontos, bdPontos] = useState([]);
+    const [mes, mesEscolhido] = useState()
 
-    let date2 = finalDate.current.value;
-    let date1 = initialDate.current.value;
+    async function escolhaMes(event){
+        await mesEscolhido(event.target.value);
+    }
 
-    const consultarPonto = () => {
-        Axios.get("http://localhost:3001/getData")
-        .then((response)=>{
-            bdPontos(response.data);    
-        })
+    console.log(mes)
+     
+    const  consultarPonto = async () => {   
+        var dataDisplay = []; 
+
+        await Axios.get("http://localhost:3001/getData")
+          .then((response)=>{
+            var dataDb = response.data;
+            dataDb.cadastrosPontos.forEach((cadastroPonto)=>{
+                dataDisplay.push(
+                    <tr>
+                        <td>{cadastroPonto.turno}</td>
+                        <td>{cadastroPonto.date}</td>
+                        <td>{cadastroPonto.time}</td>
+                    </tr>
+                )
+            })
+        })       
+       
+        bdPontos(dataDisplay)
     };
-      
+         
     return (
         <div className='read'>
             <div className="read__box">
@@ -39,23 +53,33 @@ function Read () {
                         </div>
                         <form className="formData" action="">
                             <div className="dataSelect">
-                                <div className="dataSelect__input">
-                                    <label for="">DATA INÍCIO</label>
-                                    <input ref={initialDate} className="inputGrow"  type="date" name="" id=""></input>
-                                </div>
-                                <div className="dataSelect__input">
-                                    <label for="">DATA FIM</label>
-                                    <input ref={finalDate} className="inputGrow" type="date" name="" id=""></input>
-                                </div>
-                            </div>
-                            <div className="btnChange">
-                                <button type="button" onClick={consultarPonto}>NOVA CONSULTA</button>
-                                <button type="submit">CONSULTAR</button>
-                            </div>                            
+                                <label for="">Selecione um mês</label>
+                                <select name="mes" id="" onChange={escolhaMes}>
+                                    <option value="" disabled>Escolha uma opção</option>
+                                    <option value="1">Janeiro</option>
+                                    <option value="2">Feveiro</option>
+                                    <option value="3">Março</option>
+                                    <option value="4">Abril</option>
+                                    <option value="5">Maio</option>
+                                    <option value="6">Junho</option>
+                                    <option value="7">Julho</option>
+                                    <option value="8">Agosto</option>
+                                    <option value="9">Setembro</option>
+                                    <option value="10">Outubro</option>
+                                    <option value="11">Novembro</option>
+                                    <option value="12">Dezembro</option>
+                                </select>
+                            </div>                         
                         </form>
-                        <div>
-                            <div className="btnPages">
-                                <p></p>
+                        <div className="btnChange">
+                                <button  type="button">NOVA CONSULTA</button>
+                                <button  onClick={consultarPonto} type="button">CONSULTAR</button>
+                            </div>  
+                        <div className='tableArea'>
+                            <div>
+                                <table>
+                                    { pontos }
+                                </table>
                             </div>
                         </div>
                         <div className="btnExport">

@@ -32,7 +32,7 @@ function Create (props) {
         day = currentDate.getDate();
         month = currentDate.getMonth();
         year = currentDate.getFullYear();
-        dateUpdate(`${day}/${month}/${year}`);
+        dateUpdate(`${day}-${month}-${year}`);
     }
 
     setInterval(dateNow,0)
