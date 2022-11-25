@@ -30,7 +30,7 @@ function Create (props) {
         var day, month, year;
         var currentDate = new Date();
         day = currentDate.getDate();
-        month = currentDate.getMonth();
+        month = currentDate.getMonth() + 1;
         year = currentDate.getFullYear();
         dateUpdate(`${day}-${month}-${year}`);
     }

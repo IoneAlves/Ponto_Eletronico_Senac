@@ -6,13 +6,18 @@ import {Link} from 'react-router-dom';
 
 function Read () {
     const [pontos, bdPontos] = useState([]);
-    const [mes, mesEscolhido] = useState()
+    const [mes, mesEscolhido] = useState('')
+    const [ano, anoEscolhido] = useState('')
 
     async function escolhaMes(event){
         await mesEscolhido(event.target.value);
     }
 
-    console.log(mes)
+    async function escolhaAno(event){
+        await anoEscolhido(event.target.value);
+    }
+
+    let monthYear = `${mes}-${ano}`
      
     const  consultarPonto = async () => {   
         var dataDisplay = []; 
@@ -21,14 +26,20 @@ function Read () {
           .then((response)=>{
             var dataDb = response.data;
             dataDb.cadastrosPontos.forEach((cadastroPonto)=>{
-                dataDisplay.push(
-                    <tr>
-                        <td>{cadastroPonto.turno}</td>
-                        <td>{cadastroPonto.date}</td>
-                        <td>{cadastroPonto.time}</td>
-                    </tr>
-                )
-            })
+                if(cadastroPonto.date.includes(monthYear)){
+                    dataDisplay.push(
+                        <tr>
+                            <td>{cadastroPonto.turno}</td>
+                            <td>{cadastroPonto.date}</td>
+                            <td>{cadastroPonto.time}</td>
+                        </tr>
+                    )
+                }
+             })
+             
+             if (dataDisplay.length === 0) {
+                dataDisplay = 'Período não localizado'                
+            }
         })       
        
         bdPontos(dataDisplay)
@@ -69,7 +80,16 @@ function Read () {
                                     <option value="11">Novembro</option>
                                     <option value="12">Dezembro</option>
                                 </select>
-                            </div>                         
+                            </div>
+                            <div className="dataSelect">
+                                <label for="">Selecione um ano</label>
+                                <select name="ano" id="" onChange={escolhaAno}>
+                                    <option value="" disabled>Escolha uma opção</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2020">2020</option>
+                                </select>
+                            </div>                               
                         </form>
                         <div className="btnChange">
                                 <button  type="button">NOVA CONSULTA</button>

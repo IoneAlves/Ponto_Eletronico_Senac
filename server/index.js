@@ -27,6 +27,31 @@ app.post('/cadastro', (req, resp)=>{
     })
 })
 
+app.get('/delete/:id', (req, resp)=>{    
+    bdTables.tableCadastroPonto.destroy({where: {id: req.params.id}, force: true})
+    .then((response)=>{console.log('Deletado com sucesso' + response)})
+    .catch((err)=>{console.log("Erro: Não foi possível deletar. Erro:" + err)})
+})
+
+app.put('/update/:id', (req, resp)=>{
+    bdTables.tableCadastroPonto.update(
+        {
+            turno: req.body.turno,
+            date: req.body.date,
+            time: req.body.time
+        },
+        {
+            where: 
+            {
+                id: req.params.id
+            }
+        }
+    ).then(()=>{
+        resp.send(console.log('Atualizado com sucesso'))
+    })
+    .catch((err)=>{console.log(err)})
+})
+
 app.get('/getData', (req, resp)=>{
     bdTables.tableCadastroPonto.findAll()
     .then((cadastrosPontos)=>{ 
