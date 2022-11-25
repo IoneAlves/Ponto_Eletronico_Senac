@@ -2,8 +2,7 @@ import React from 'react';
 import './style.css';
 import {Link} from 'react-router-dom';
 
-
-function Registration () {
+function Registration () { 
     return (
         <div>
             <div class="registration__box">
@@ -27,25 +26,25 @@ function Registration () {
                             <div class="flexInputs">
                                 <div>
                                     <p>id usuário</p>
-                                    <input class="inputWidth"  type="text" disabled></input>
+                                    <input name='id_usuario' id='id_usuario' class="inputWidth"  type="text" disabled></input>
                                 </div>
                                 <div class="flexGrow">
                                     <p>nome</p>
-                                    <input class="inputWidth" type="text" disabled></input>
+                                    <input name='' id='' class="inputWidth" type="text" disabled></input>
                                 </div>
                             </div>
                             <div class="flexInputs">
                                 <div class="flexGrow">
                                     <p>cpf</p>
-                                    <input class="inputWidth" type="text" disabled></input>
+                                    <input name='' id='' class="inputWidth" type="text" disabled></input>
                                 </div>
                                 <div class="flexGrow">
                                     <p>rg</p>
-                                    <input class="inputWidth" type="text" disabled></input>
+                                    <input name='' id='' class="inputWidth" type="text" disabled></input>
                                 </div>
                                 <div class="flexGrow">
                                     <p>data nascimento</p>
-                                    <input class="inputWidth" type="text" disabled></input>
+                                    <input name='' id='' class="inputWidth" type="text" disabled></input>
                                 </div>
                                 <div class="flexGrow">
                                     <p>local nascimento</p>

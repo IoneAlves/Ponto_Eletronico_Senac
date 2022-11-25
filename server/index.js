@@ -27,6 +27,58 @@ app.post('/cadastro', (req, resp)=>{
     })
 })
 
+app.get('/getUser', (req, resp)=>{
+    bdTables.tableUsuario.findOne({where: {id: req.body.email_usuario}, force: true})
+    .then((usuario)=>{ 
+        if (usuario.email_usuario === req.body.email_usuario && usuario.salario_usuario === req.body.senha_usuario) {
+            resp.redirect('/dashboard')            
+        }
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+})
+
+app.post('/checkin', (req, resp)=>{
+    bdTables.tableUsuario.findOne({where: {email_usuario: req.body.email_usuario}, force: true})
+    .then((usuario)=>{ 
+        console.log(usuario.senha_usuario)
+        console.log(req.body.email_usuario)
+        if (usuario.email_usuario === req.body.email_usuario && usuario.senha_usuario === req.body.senha_usuario) {
+            resp.redirect('/dashboard')            
+        }
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+})
+
+app.post('/usuario', (req, resp)=>{   
+    bdTables.tableUsuario.create({
+        nome_usuario: req.body.nome_usuario,
+        cpf_usuario: req.body.cpf_usuario,
+        rg_usuario: req.body.rg_usuario,
+        data_nasc_usuario: req.body.data_nasc_usuario,
+        local_nasc_usuario: req.body.local_nasc_usuario,
+        endereco_usuario: req.body.endereco_usuario,
+        numero_usuario: req.body.numero_usuario,
+        cep_usuario: req.body.cep_usuario,
+        cidade_usuario: req.body.cidade_usuario,
+        estado_usuario: req.body.estado_usuario,
+        funcao_usuario: req.body.funcao_usuario,
+        admissao_usuario: req.body.admissao_usuario,
+        contrato_usuario: req.body.contrato_usuario,
+        salario_usuario: req.body.salario_usuario,
+        carga_horaria_usuario: req.body.carga_horaria_usuario,
+        email_usuario: req.body.email_usuario,
+        senha_usuario: req.body.senha_usuario
+    }).then(()=>{
+        resp.send('Usuário Cadastrado Com Sucesso');
+    }).catch((erro)=>{
+        resp.send('Erro ao gravar' + erro);
+    })
+})
+
 app.get('/delete/:id', (req, resp)=>{    
     bdTables.tableCadastroPonto.destroy({where: {id: req.params.id}, force: true})
     .then((response)=>{console.log('Deletado com sucesso' + response)})
@@ -73,7 +125,6 @@ app.get('/dados',(req, res)=>{
               'dia': 'quarta-feira'
             });
 })
-
 
 app.listen(3001, ()=>{
     console.log('Server listening to port 3001');
