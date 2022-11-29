@@ -10,19 +10,20 @@ import Read from '../components/Read';
 import Delete from '../components/Delete';
 import Registration from '../components/Registration'
 
-function Rotas () {
+
+function Rotas () {  
     return (
         <BrowserRouter>
-            <Routes>
-                <Route exact path='/' element={<Home />} />
-                <Route path='/login' element={<Login />} />
-                <Route path='/dashboard' element={<Dashboard />}/>
-                <Route path='/cadastrar' element={<Create />} />
-                <Route path='/atualizar' element={<Update />} />
-                <Route path='/pesquisar' element={<Read />} />
-                <Route path='/deletar' element={<Delete />}/>
-                <Route path='/meucadastro' element={<Registration />}/>                
-            </Routes>
+                <Routes>
+                    <Route exact path='/' element={<Home />} />
+                    <Route path='/login' element={<Login />} />
+                    <Route path='/dashboard' element={<Dashboard />}/>
+                    <Route path='/cadastrar' element={<Create />} />
+                    <Route path='/atualizar' element={<Update />} />
+                    <Route path='/pesquisar' element={<Read />} />
+                    <Route path='/deletar' element={<Delete />}/>
+                    <Route path='/meucadastro' element={<Registration/>}/>        
+                </Routes>
         </BrowserRouter>
     );
 };

@@ -62,18 +62,11 @@
 .btnChangeDelete {
     width: 100%;
     display: flex;
+    justify-content: center;
     gap: 2rem;
 }
 
 
-.btnPagesLeave {
-    width: 100px;
-}
-
-.btnLeaveArea {
-    display: flex;
-    justify-content: flex-end;
-}
 
 .imgSvg {
     fill: #fff;
@@ -99,7 +92,7 @@ label {
 .formData {
     width: 100%;
     display: flex;
-    align-items: center;
+    justify-content: space-between;
     gap: 0.5rem;
     margin: 1rem 0;
 }
@@ -110,20 +103,6 @@ input, select {
     background-color: transparent;
     border: none;
     border-bottom: 1px solid #F28322;    
-}
-
-
-button {
-    color: #FFF;
-    text-transform: capitalize;
-    background-color: #F28322;
-    width: 70%;
-    padding: 0.5rem 0;
-    border-radius: 25px;
-    font-size: 1.2rem;
-    border: none;
-    box-shadow: 3px 3px 4px rgba(0,0,0,0.4);
-    cursor: pointer;
 }
 
 .btnPages:hover {

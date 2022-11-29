@@ -54,7 +54,7 @@ function Update () {
                             </div>
                         </div>
                         <div>
-                            <p className="update__content__text2 ">Para alterar o registro inclúido clique em <span>“ALTERAR PONTO”</span>. Feita a alteração clique em <span>“SALVAR ATUALIZAÇÃO”</span></p>
+                            <p className="update__content__text2 ">Para alterar o registro inclúido clique em <span className='destaque'>“Alterar Ponto”</span>. Feita a alteração clique em <span className='destaque'>“Salvar Atualização”</span></p>
                         </div>
                         <form className='formUpdate' action="">
                             <div className="formData">
@@ -78,12 +78,14 @@ function Update () {
                                 </div>
                             </div>
                             <div className="btnChangeUpdate">
-                                <button type="submit" onClick={atualizarPonto}>SALVAR ALTERAÇÃO</button>
+                                <button type="submit" onClick={atualizarPonto}>Salvar Alteração</button>
                             </div>                            
                         </form>
-                        <Link to='/dashboard'><div class="backHome">voltar</div></Link>
                         <div>
                             <p className="update__content__text2 "><span>Atenção: </span>será permitido alterar apenas o tipo do último registro incluído no sistema. Caso deseje alterar data e hora, entre em contato com o RH responsável</p>
+                        </div>
+                        <div className="btnLeaveArea">
+                            <Link to='/dashboard' style={{textDecoration: 'none'}}><div class="btnPageLeave">voltar</div></Link>
                         </div>
                     </div>
                 </div>                             

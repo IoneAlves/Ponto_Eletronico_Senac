@@ -83,7 +83,7 @@ function Delete () {
                             </div>
                         </div>
                         <div>
-                            <p className="delete__content__text2 ">Para deletar o registro inclúido selecione a data e o tipo do registro e clique em <span>“PESQUISAR”</span>. Verifique se o registro selecionado é o que deseja alterar, então clique em <span>“DELETAR”</span></p>
+                            <p className="delete__content__text2 ">Para deletar um registro, selecione a data e o tipo do registro e clique em <span className='destaque'>“Pesquisar”</span>. Verifique se o registro pesquisado é o que deseja alterar, então clique em <span className='destaque'>“Deletar”</span></p>
                         </div>
                         <div className='formDelete'>
                             <div className="formData">
@@ -111,13 +111,16 @@ function Delete () {
                         </div>
                         <form action=''>
                             <div className="btnChangeDelete">
-                                <button onClick={deletarPonto} type="submit">DELETAR</button>
+                                <button onClick={deletarPonto} type="submit">Deletar</button>
                             </div>     
                         </form>
-                        <Link to='/dashboard'><div class="backHome">voltar</div></Link> 
                         <div>
                             <p className="delete__content__text2 "><span>Atenção: </span>será permitido alterar apenas o tipo do último registro incluído no sistema. Caso deseje alterar data e hora, entre em contato com o RH responsável</p>
                         </div>
+                        <div className='btnLeaveArea '>
+                            <Link to='/dashboard' style={{textDecoration: 'none'}}><div className="btnPageLeave">voltar</div></Link> 
+                        </div>
+
                     </div>
                 </div>                             
             </div>

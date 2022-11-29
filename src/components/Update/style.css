@@ -61,6 +61,7 @@
 
 .btnChangeUpdate{
     display: flex;
+    justify-content: center;
     gap: 2rem;
 }
 
@@ -117,7 +118,7 @@ input, select {
 
 button {
     color: #FFF;
-    text-transform: capitalize;
+    text-transform: none;
     background-color: #F28322;
     width: 45%;
     padding: 0.5rem 0;

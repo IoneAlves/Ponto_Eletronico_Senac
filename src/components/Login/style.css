@@ -21,6 +21,10 @@
     background-color: rgba(0, 0, 0, 0.719);
 }
 
+.inputEmailPassword, .inputEmailPassword{
+    text-align: left;
+}
+
 .login__content__img {
     max-width: 400px;
     height: auto;

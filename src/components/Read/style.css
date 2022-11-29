@@ -99,7 +99,8 @@ button {
 }
 
 .btnExport {
-    text-align: right;   
+    text-align: right;
+    margin: 1rem 0;   
 }
 
 .btnExport button {
@@ -145,20 +146,31 @@ input {
     margin: 2vmin 0;
 }
 
-.tableArea, tr, td{
+.tableArea {
     width: 100%;
     padding: 0.2px;
 }
 
-.tableArea, th  {
+table {
+    width: 100%;
+    table-layout: fixed;
     border-collapse: collapse;
-    border: 1px solid #03588C; 
+}
+
+.trHead {
+    color: #fff;
+    background-color: #03588C;
 }
 
 tr {
-    border-collapse: collapse;
-    background-color: #03588C;
-    color: #fff;
+    color: #03588C;
+    background-color: #fff;
+    border-top: 1px solid #03588C;
+    border-bottom: 1px solid #03588C;
+}
+
+td {
+    padding: 0.75rem 0;
 }
 
 .inputGrow {

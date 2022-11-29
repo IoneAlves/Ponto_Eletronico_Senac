@@ -1,4 +1,4 @@
-.btnPages, .btnPagesLeave {
+.btnPages {
     align-items: center;
     background-color: #03588C;
     border-radius: 25px;
@@ -19,15 +19,6 @@
 
 .btnPages {
     width: 100%;
-}
-
-.btnPagesLeave {
-    width: 100px;
-}
-
-.btnLeaveArea {
-    display: flex;
-    justify-content: flex-end;
 }
 
 .imgSvg {

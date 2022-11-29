@@ -28,25 +28,9 @@ app.post('/cadastro', (req, resp)=>{
 })
 
 app.get('/getUser', (req, resp)=>{
-    bdTables.tableUsuario.findOne({where: {id: req.body.email_usuario}, force: true})
-    .then((usuario)=>{ 
-        if (usuario.email_usuario === req.body.email_usuario && usuario.salario_usuario === req.body.senha_usuario) {
-            resp.redirect('/dashboard')            
-        }
-    })
-    .catch((err)=>{
-        console.log(err);
-    })
-})
-
-app.post('/checkin', (req, resp)=>{
-    bdTables.tableUsuario.findOne({where: {email_usuario: req.body.email_usuario}, force: true})
-    .then((usuario)=>{ 
-        console.log(usuario.senha_usuario)
-        console.log(req.body.email_usuario)
-        if (usuario.email_usuario === req.body.email_usuario && usuario.senha_usuario === req.body.senha_usuario) {
-            resp.redirect('/dashboard')            
-        }
+    bdTables.tableUsuario.findAll()
+    .then((users)=>{ 
+        resp.send({users: users});
     })
     .catch((err)=>{
         console.log(err);
@@ -77,6 +61,12 @@ app.post('/usuario', (req, resp)=>{
     }).catch((erro)=>{
         resp.send('Erro ao gravar' + erro);
     })
+})
+
+app.get('/delete-user/:id', (req, resp)=>{    
+    bdTables.tableUsuario.destroy({where: {id_usuario: req.params.id}, force: true})
+    .then(()=>{resp.send('Deletado com sucesso')})
+    .catch((err)=>{resp.send("Erro: Não foi possível deletar. Erro:" + err)})
 })
 
 app.get('/delete/:id', (req, resp)=>{    

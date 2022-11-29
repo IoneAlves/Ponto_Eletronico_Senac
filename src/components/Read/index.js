@@ -17,16 +17,31 @@ function Read () {
         await anoEscolhido(event.target.value);
     }
 
-    let monthYear = `${mes}-${ano}`
-     
+    let newMes ='';
+    let monthYear='';
+
+    if(mes <= 9) {
+        newMes = 0 + mes;
+        console.log(newMes)
+        monthYear = `${newMes}-${ano}`  
+    } else {
+        monthYear = `${mes}-${ano}`  
+    }
+
     const  consultarPonto = async () => {   
         var dataDisplay = []; 
 
         await Axios.get("http://localhost:3001/getData")
           .then((response)=>{
+            dataDisplay.push([<tr className='trHead'>
+                <td>Turno</td>
+                <td>Data</td>
+                <td>Hora</td>
+            </tr>]);
             var dataDb = response.data;
             dataDb.cadastrosPontos.forEach((cadastroPonto)=>{
-                if(cadastroPonto.date.includes(monthYear)){
+                let newPonto = cadastroPonto.date.substring(3,10);             
+                if(newPonto.includes(monthYear)){
                     dataDisplay.push(
                         <tr>
                             <td>{cadastroPonto.turno}</td>
@@ -37,7 +52,8 @@ function Read () {
                 }
              })
              
-             if (dataDisplay.length === 0) {
+             if (dataDisplay.length === 1) {
+                dataDisplay = [];
                 dataDisplay = 'Período não localizado'                
             }
         })       
@@ -60,15 +76,15 @@ function Read () {
                             </div>
                         </div>
                         <div>
-                            <p className="read__content__text2 ">Para consultar o histório de registros clique informe uma <span>“DATA INÍCIO”</span> e uma <span>“DATA FIM”</span> e clique em <span>“CONSULTAR”</span></p>
+                            <p>Para consultar o histório de registros clique informe uma <span className='destaque'>“Data Início”</span> e uma <span className='destaque'>“Data Fim”</span> e clique em <span className='destaque'>“Consultar”</span></p>
                         </div>
                         <form className="formData" action="">
                             <div className="dataSelect">
                                 <label for="">Selecione um mês</label>
                                 <select name="mes" id="" onChange={escolhaMes}>
-                                    <option value="" disabled>Escolha uma opção</option>
+                                    <option value="" selected disabled>Escolha uma opção</option>
                                     <option value="1">Janeiro</option>
-                                    <option value="2">Feveiro</option>
+                                    <option value="2">Fevereiro</option>
                                     <option value="3">Março</option>
                                     <option value="4">Abril</option>
                                     <option value="5">Maio</option>
@@ -84,7 +100,7 @@ function Read () {
                             <div className="dataSelect">
                                 <label for="">Selecione um ano</label>
                                 <select name="ano" id="" onChange={escolhaAno}>
-                                    <option value="" disabled>Escolha uma opção</option>
+                                    <option value="" selected disabled>Escolha uma opção</option>
                                     <option value="2022">2022</option>
                                     <option value="2021">2021</option>
                                     <option value="2020">2020</option>
@@ -92,7 +108,7 @@ function Read () {
                             </div>                               
                         </form>
                         <div className="btnChange">
-                                <button  type="button">NOVA CONSULTA</button>
+                                <button  type="button" onClick={()=>{bdPontos('')}}>NOVA CONSULTA</button>
                                 <button  onClick={consultarPonto} type="button">CONSULTAR</button>
                             </div>  
                         <div className='tableArea'>
@@ -105,7 +121,9 @@ function Read () {
                         <div className="btnExport">
                             <button type="button">EXPORTAR PDF</button>
                         </div>
-                        <Link to='/dashboard'><div className="backHome">voltar</div></Link>
+                        <div className='btnLeaveArea'>
+                            <Link to='/dashboard'><div className="btnPageLeave">voltar</div></Link>
+                        </div>
                     </div>
                 </div>                             
             </div>

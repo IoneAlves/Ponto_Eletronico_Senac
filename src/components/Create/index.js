@@ -11,10 +11,10 @@ function Create (props) {
     const [turno, turnoEscolhido] = useState()
     
     const inputDate = useRef(null);
-    const [dayNow, dateUpdate] = useState('teste');
+    const [dayNow, dateUpdate] = useState('');
     
     const inputTime = useRef(null);
-    const [hourNow, hourUpdated] = useState('teste');
+    const [hourNow, hourUpdated] = useState('');
     
     let nameUser = 'Ione'
     
@@ -74,13 +74,13 @@ function Create (props) {
                         <Button svgIconcreate={'assets/images/clocks_icon.svg'} pageName='cadastrar'/>  
                     </div>
                     <div>
-                        <p>{nameUser}, selecione o tipo do regitro e clique em “incluir ponto” para registrar o ponto</p>
+                        <p className='userText'>{nameUser}, selecione o tipo do registro e clique no botão <span className='destaque'>“incluir ponto”</span> para registrar o ponto</p>
                     </div>
                     <form action="">
                             <div className="formData">
                                 <label for="">TIPO DE REGISTRO</label>
                                 <select name="turno" id="" onChange={escolhaTurno}>
-                                    <option value="" disabled>Escolha uma opção</option>
+                                    <option selected disabled>Escolha uma opção</option>
                                     <option value="entrada_turno">ENTRADA TURNO</option>
                                     <option value="saida_almoco">SAÍDA ALMOÇO</option>
                                     <option value="retorno_almoco">RETORNO ALMOÇO</option>
@@ -98,8 +98,10 @@ function Create (props) {
                                 </div>
                             </div>
                             <button type="submit" onClick={salvarPonto}>incluir ponto</button>
-                        </form>
-                        <Link to='/dashboard'><div className="backHome">voltar</div></Link>                        
+                    </form>
+                    <div className='btnLeaveArea'>
+                        <Link to='/dashboard' style={{textDecoration: 'none'}}><div className="btnPageLeave">voltar</div></Link> 
+                    </div>                       
                 </div>
             </div>
         </div>
