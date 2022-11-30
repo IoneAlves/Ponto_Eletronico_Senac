@@ -3,8 +3,30 @@ import { ReactDOM } from 'react';
 import Axios from 'axios';
 import './style.css';
 import {Link} from 'react-router-dom';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 
 function Read () {
+    const doc = new jsPDF({
+        scale: [612, 1200],
+        orientation: 'p',
+        unit: 'px',
+        format: 'a4'
+       });
+          
+    function chosenPeriod(){
+        doc.html(inputPrint.current,{
+            html2canvas: {
+                // insert html2canvas options here, e.g.
+                width: 100
+            },
+            async callback(doc) {
+                await doc.save('espelho_de_ponto');
+            }
+        });
+    } 
+
+    const inputPrint = useRef(null);
     const [pontos, bdPontos] = useState([]);
     const [mes, mesEscolhido] = useState('')
     const [ano, anoEscolhido] = useState('')
@@ -60,7 +82,7 @@ function Read () {
        
         bdPontos(dataDisplay)
     };
-         
+
     return (
         <div className='read'>
             <div className="read__box">
@@ -110,16 +132,16 @@ function Read () {
                         <div className="btnChange">
                                 <button  type="button" onClick={()=>{bdPontos('')}}>NOVA CONSULTA</button>
                                 <button  onClick={consultarPonto} type="button">CONSULTAR</button>
-                            </div>  
+                        </div>
+                        <div className="btnExport">
+                            <button type="button" onClick={chosenPeriod}>EXPORTAR PDF</button>
+                        </div>  
                         <div className='tableArea'>
                             <div>
-                                <table>
+                                <table ref={inputPrint}>
                                     { pontos }
                                 </table>
                             </div>
-                        </div>
-                        <div className="btnExport">
-                            <button type="button">EXPORTAR PDF</button>
                         </div>
                         <div className='btnLeaveArea'>
                             <Link to='/dashboard'><div className="btnPageLeave">voltar</div></Link>
@@ -130,5 +152,6 @@ function Read () {
         </div>
     );
 };
+
 
 export default Read;

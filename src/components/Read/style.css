@@ -177,6 +177,19 @@ td {
     flex-grow: 1;
 }
 
+.tableArea2 {
+    width: 100%;
+    padding: 0.2px;
+}
+
+.table2 {
+    width: 50%;
+    font-size: 6px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    margin: 2rem;
+}
+
 @media only screen and (max-width: 600px) {
 
     .flexInputs {

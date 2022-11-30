@@ -9,7 +9,6 @@ function Login () {
     const [userInicial, userUpdate] = useState('');
     const [passwordInicial, passwordUpdate] = useState('');
     const [message, messageUpdate] = useState('');
-    const [userLogged, userLoggedUpdate] = useState('');
 
     const navigate = useNavigate();
 
